@@ -9,7 +9,7 @@ import * as uuid from 'uuid'
 
 const todosAccess = new TodosAccess()
 const logger = createLogger('todos')
-const bucketName = process.env.ATTACHMENTS_S3_BUCKET
+const bucketName = process.env.ATTACHMENT_S3_BUCKET
 
 export async function getTodosByUserId(userId: string): Promise<TodoItem[]> {
     return await todosAccess.getTodosByUserId(userId)

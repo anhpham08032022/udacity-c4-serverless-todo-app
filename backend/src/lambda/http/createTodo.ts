@@ -15,10 +15,14 @@ export const handler = middy(
     logger.info('Start creating todo', { event })
     const todoRequest: CreateTodoRequest = JSON.parse(event.body)
     const userId = getUserId(event)
-    const newTodo = createTodos(todoRequest, userId);
+    const newTodo = await createTodos(todoRequest, userId);
 
     return {
       statusCode: 201,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
+      },
       body: JSON.stringify({
         item: newTodo
       })
