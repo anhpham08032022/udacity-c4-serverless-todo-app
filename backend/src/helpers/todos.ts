@@ -38,6 +38,10 @@ export async function updateTodo(userId: string, todoId: string, updatedTodo: Up
     return await todosAccess.updateTodo(userId, todoId, updatedTodo)
   }
 
+export async function getSignedUploadUrl(todoId: string): Promise<string> {
+    return await todosAccess.getSignedUploadUrl(todoId)
+}
+
 function getAttachmentUrl(attachmentId: string): string {
     return `https://${bucketName}.s3.amazonaws.com/${attachmentId}`
 }
