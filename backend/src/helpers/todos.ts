@@ -5,14 +5,14 @@ import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 import { createLogger } from '../utils/logger'
 import * as uuid from 'uuid'
 
-// Implement businessLogic
+// Implement businessLogic acts as service layer
 
 const todosAccess = new TodosAccess()
 const logger = createLogger('todos')
 const bucketName = process.env.ATTACHMENTS_S3_BUCKET
 
 export async function getTodosByUserId(userId: string): Promise<TodoItem[]> {
-    return todosAccess.getTodosByUserId(userId)
+    return await todosAccess.getTodosByUserId(userId)
 }
 
 export async function createTodos(createTodoRequest:CreateTodoRequest, userId: string): Promise<TodoItem> {
@@ -30,12 +30,12 @@ export async function createTodos(createTodoRequest:CreateTodoRequest, userId: s
 
 export async function deleteTodoItem(userId: string, todoId: string): Promise<Boolean> {
     logger.info(`Deleting todo ${todoId} for user ${userId}`, { todoId, userId })
-    return todosAccess.deleteTodoItem(userId, todoId)
+    return await todosAccess.deleteTodoItem(userId, todoId)
 }
 
 export async function updateTodo(userId: string, todoId: string, updatedTodo: UpdateTodoRequest): Promise<Boolean> {
     logger.info(`Updating todo ${todoId} for user ${userId}`, { userId, todoId, updatedTodo: updatedTodo })
-    return todosAccess.updateTodo(userId, todoId, updatedTodo)
+    return await todosAccess.updateTodo(userId, todoId, updatedTodo)
   }
 
 function getAttachmentUrl(attachmentId: string): string {

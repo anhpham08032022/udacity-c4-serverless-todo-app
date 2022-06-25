@@ -8,6 +8,7 @@ import { TodoUpdate } from '../models/TodoUpdate';
 const XAWS = AWSXRay.captureAWS(AWS)
 const logger = createLogger('todosAccess')
 
+// Implement business acts as repository layer
 export class TodosAccess {
     constructor (
         private readonly docClient: DocumentClient = createDynamoDBClient(),
