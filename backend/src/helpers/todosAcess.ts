@@ -90,11 +90,7 @@ export class TodosAccess {
         return isUpdateSuccess
     }
 
-    async getAttachmentUrl(attachmentId: string): Promise<string> {
-        return `https://${this.bucketName}.s3.amazonaws.com/${attachmentId}`
-    }
-  
-    async getUploadUrl(attachmentId: string): Promise<string> {
+    async getSignedUploadUrl(attachmentId: string): Promise<string> {
       return this.s3.getSignedUrl('putObject', {
         Bucket: this.bucketName,
         Key: attachmentId,
@@ -113,4 +109,4 @@ function createDynamoDBClient() {
     }
   
     return new XAWS.DynamoDB.DocumentClient()
-  }
+}
