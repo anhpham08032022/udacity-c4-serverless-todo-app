@@ -39,6 +39,7 @@ export async function updateTodo(userId: string, todoId: string, updatedTodo: Up
   }
 
 export async function getSignedUploadUrl(todoId: string): Promise<string> {
+    logger.info(`Start getting signedUrl with todo id ${todoId}`)
     return await todosAccess.getSignedUploadUrl(todoId)
 }
 
