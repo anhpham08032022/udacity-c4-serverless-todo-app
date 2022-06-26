@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { cors } from 'middy/middlewares'
-import { getSignedUploadUrl } from '../../helpers/todos'
+import { getSignedUploadUrl } from '../../businessLogic/todos'
 import 'source-map-support/register'
 import * as middy from 'middy'
 
